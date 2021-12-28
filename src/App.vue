@@ -14,19 +14,18 @@
                 @submit.prevent="submit"
             >
                 <form-select
-                    :key="settings.input.key"
                     v-model="value"
                     :input="settings.input"
                     :class-name="settings['class-name']"
                     :clearable="settings.clearable"
-                    :searchable="settings.searchable"
                     :filterable="settings.filterable"
-                    :prefill="settings.prefill"
-                    :start-with="settings['start-with']"
-                    :option-key="settings['option-key']"
-                    :options="countries"
                     :form-errors="formErrors.country_id"
+                    :prefill="settings.prefill"
                     :group-name="$options.GROUP_NAME"
+                    :searchable="settings.searchable"
+                    :start-with="settings['start-with']"
+                    :option-label="settings['option-label']"
+                    :options="countries"
                 >
                     <template
                         v-if="hasCustomOptionLabel"
@@ -132,7 +131,7 @@
 
                 <button
                     class="btn"
-                    :class="{'active' : settings['option-key'] === 'code' }"
+                    :class="{'active' : settings['option-label'] === 'code' }"
                     @click.prevent="toggleOptionLabel"
                 >
                     Custom option label
@@ -248,7 +247,7 @@ export default {
                 filterable: false,
                 prefill: false,
                 'start-with': false,
-                'option-key': 'name',
+                'option-label': 'name',
             },
             hasErrors: false,
             hasCustomArrow: false,
@@ -316,11 +315,11 @@ export default {
         },
         toggleOptionLabel() {
             this.hasCustomOptionLabel = false;
-            this.settings['option-key'] = this.settings['option-key'] !== 'name' ? 'name' : 'code';
+            this.settings['option-label'] = this.settings['option-label'] !== 'name' ? 'name' : 'code';
         },
         toggleCustomOptionLabel() {
             this.hasCustomOptionLabel = !this.hasCustomOptionLabel;
-            this.settings['option-key'] = 'name';
+            this.settings['option-label'] = 'name';
         },
         toggleCustomArrow() {
             this.hasCustomArrow = !this.hasCustomArrow;

@@ -18,7 +18,7 @@
                 <v-select
                     ref="select"
                     v-model="localValue"
-                    :label="optionKey"
+                    :label="optionLabel"
                     :clearable="clearable"
                     :disabled="isDisabled"
                     :filter="filter"
@@ -110,7 +110,7 @@ export default {
     components: { VSelect },
     extends: FormItem,
     props: {
-        optionKey: {
+        optionLabel: {
             type: String,
             default: 'name',
         },
@@ -273,13 +273,13 @@ export default {
 
             if (this.startWith) {
                 return search.length
-                    ? options.filter((o) => slugThat(o[this.optionKey])
+                    ? options.filter((o) => slugThat(o[this.optionLabel])
                         .startsWith(slugThat(search)))
                     : options;
             }
 
             return search.length
-                ? options.filter((o) => slugThat(o[this.optionKey])
+                ? options.filter((o) => slugThat(o[this.optionLabel])
                     .includes(slugThat(search)))
                 : options;
         },
