@@ -1,42 +1,106 @@
 {
   "name": "@odyzeo/form-select",
   "version": "0.1.0",
+  "description": "Odyzeo form select component with Vue",
+  "main": "dist/form-select.common.js",
+  "source": "src/components/FormSelect.vue",
+  "browser": "dist/form-select.umd.min.js",
+  "style": "dist/form-select.css",
+  "less": "src/less/form-select.less",
   "private": true,
+  "files": [
+    "dist/*",
+    "src/*",
+    "package.json"
+  ],
+  "keywords": [
+    "odyzeo",
+    "form",
+    "select",
+    "vue"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build-lib": "vue-cli-service build --target lib --name form-select ./src/components/FormSelect.vue",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "@odyzeo/form-item": "^2.5.0",
+    "slugify": "^1.6.4",
+    "vue-select": "^3.16.0",
+    "vue": "^2.6.12"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
-    "vue-template-compiler": "^2.6.11"
+    "@babel/core": "^7.14.8",
+    "@babel/eslint-parser": "^7.14.7",
+    "@babel/eslint-plugin": "^7.14.5",
+    "@vue/cli-plugin-babel": "^4.5.12",
+    "@vue/cli-plugin-eslint": "^4.5.12",
+    "@vue/cli-service": "^4.5.12",
+    "@vue/eslint-config-airbnb": "^5.3.0",
+    "eslint": "^7.25.0",
+    "eslint-plugin-vue": "^7.9.0",
+    "less": "^4.1.1",
+    "less-loader": "^7.3.0",
+    "normalize.css": "^8.0.1",
+    "vue-template-compiler": "^2.6.12"
   },
   "eslintConfig": {
     "root": true,
     "env": {
-      "node": true
+      "browser": true,
+      "es6": true
     },
     "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
+      "plugin:vue/recommended",
+      "@vue/airbnb"
     ],
-    "parserOptions": {
-      "parser": "babel-eslint"
+    "rules": {
+      "indent": 0,
+      "vue/script-indent": [
+        2,
+        4
+      ],
+      "vue/html-indent": [
+        2,
+        4
+      ],
+      "vue/require-v-for-key": 1,
+      "vue/html-self-closing": [
+        2,
+        {
+          "html": {
+            "normal": "never",
+            "component": "never"
+          }
+        }
+      ],
+      "camelcase": 0,
+      "import/extensions": [
+        2,
+        "ignorePackages",
+        {
+          "js": "never",
+          "vue": "never"
+        }
+      ],
+      "import/prefer-default-export": 0,
+      "no-param-reassign": [
+        2,
+        {
+          "props": false
+        }
+      ]
     },
-    "rules": {}
+    "parserOptions": {
+      "parser": "@babel/eslint-parser"
+    }
   },
   "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
+    "defaults"
   ]
 }

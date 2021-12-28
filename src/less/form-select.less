@@ -1,0 +1,263 @@
+/**
+ * Form
+ */
+@form-item--font-size: 16px;
+@form-item--line-height: normal;
+@form-item--border-width: 1px;
+@form-item--border-radius: 3px;
+@form-item--padding-x: 12px;
+@form-item--padding-y: 9px;
+@form-item--input-height: 40px;
+@form-select--border-width: 1px;
+@form-select--margin-x: 4px;
+@form-select--padding-x: @form-item--padding-x
+- @form-select--margin-x - @form-select--border-width;
+@color--default: #959595;
+@color--action: #120d69;
+@color--border: #dedede;
+@color--danger: #f02525;
+@color--secondary: #2a2a2a;
+@color--grey: #f5f5f5;
+
+.form-select {
+
+  .v-select, .v-select * {
+    box-sizing: border-box;
+  }
+
+  .v-select {
+    position: relative;
+    font-family: inherit;
+  }
+
+  .vs__dropdown-toggle {
+    appearance: none;
+    display: flex;
+    background: none;
+    white-space: normal;
+  }
+
+  .vs--unsearchable .vs__dropdown-toggle {
+    cursor: pointer;
+  }
+
+  .vs__selected-options {
+    display: flex;
+    flex-basis: 100%;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    padding: 0 2px;
+    position: relative;
+  }
+
+  .form-item__error {
+    padding: 3px 3px 0 0;
+    color: #f02525;
+    font-size: 13px;
+    line-height: normal;
+  }
+
+  .vs__selected {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(60,60,60,.26);
+    border-radius: 4px;
+    z-index: 0;
+
+    margin: 0 @form-select--margin-x 0;
+    padding: (@form-item--padding-y - @form-item--border-width)
+    @form-select--padding-x;
+
+    color: @color--secondary;
+    line-height: @form-item--line-height;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    background-color: #f0f0f0;
+  }
+
+  .vs--single .vs__selected {
+    background-color: transparent;
+    border-color: transparent;
+  }
+
+  .form-select__label {
+    margin-bottom: 4px;
+    box-sizing: border-box;
+    pointer-events: none;
+  }
+
+  .form-select__wrapper {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+  }
+
+  .form-select--filled,
+  .form-select__field,
+  .form-select--default,
+  .form-item__field {
+    border-color: @color--border;
+  }
+
+  .vs__search {
+    flex-grow: 1;
+    z-index: 1;
+
+    width: 0;
+    max-width: 100%;
+    margin: 0;
+    padding: (@form-item--padding-y - @form-item--border-width) @form-item--padding-x;
+
+    border: 1px solid transparent;
+    border-left: none;
+    line-height: @form-item--line-height;
+    color: @color--default;
+    font-size: @form-item--font-size;
+
+    appearance: none;
+    outline: none;
+    background: none;
+    box-shadow: none;
+  }
+
+  .vs__selected-options {
+    padding: 0;
+    flex-wrap: nowrap;
+
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .vs__dropdown-toggle {
+    padding: 0;
+    border: @form-item--border-width solid @color--border;
+    border-radius: @form-item--border-radius;
+  }
+
+  .vs__dropdown-menu {
+    position: absolute;
+    top: calc(100% - 1px);
+    left: 0;
+    z-index: 1000;
+    overflow-y: auto;
+
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    max-height: 350px;
+    min-width: 160px;
+    padding: 0;
+    margin: 0;
+
+    box-shadow: 0 3px 6px 0 rgb(0 0 0 / 15%);
+    border: 1px solid @color--border;
+    border-top-style: none;
+    border-radius: 0 0 4px 4px;
+    text-align: left;
+    list-style: none;
+    background: #fff;
+  }
+
+  .vs__dropdown-option {
+    display: block;
+    padding: 6px @form-item--padding-x;
+    color: @color--default;
+    line-height: @form-item--line-height;
+    white-space: initial;
+    cursor: pointer;
+    clear: both;
+  }
+
+  .vs__dropdown-option--highlight {
+    color: @color--secondary;
+    background-color: @color--grey;
+  }
+
+  .vs__actions {
+    flex: 0 0 auto;
+
+    height: @form-item--input-height - (2 * @form-item--border-width);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .vs__clear {
+    padding: 0;
+    border: 0;
+
+    background-color: transparent;
+    cursor: pointer;
+
+    path {
+      fill: @color--action;
+    }
+  }
+
+  .form-select__arrow-icon {
+    display: inline-flex;
+    justify-content: center;
+
+    width: 40px;
+
+    transition: transform .15s ease;
+    fill: @color--action;
+  }
+
+  .vs--open {
+
+    .form-select__arrow-icon {
+      transform: rotate(-180deg);
+    }
+  }
+
+  .vs__selected-options {
+    align-content: center;
+  }
+}
+
+.form-select--error {
+
+  .vs__dropdown-menu,
+  .vs__dropdown-toggle {
+    border-color: @color--danger;
+  }
+}
+
+.form-select--prefill:not(.form-select--focused) {
+
+  .v-select {
+    /**
+     * Since we prefill the search input
+     * We want to prevent setting cursor position
+     * by user randomly clicking into empty search input
+     */
+    pointer-events: none;
+  }
+}
+
+
+.form-select--disabled {
+  color: @color--default;
+
+  .form-select__input {
+    background-color: #f1f1f1;
+  }
+
+  .vs__actions {
+    visibility: hidden;
+  }
+
+  .v-select {
+
+    background-color: #f1f1f1;
+
+    :hover {
+      cursor: not-allowed;
+    }
+  }
+}
